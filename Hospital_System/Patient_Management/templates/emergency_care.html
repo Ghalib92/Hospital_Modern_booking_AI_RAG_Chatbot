@@ -1,0 +1,32 @@
+ {%extends 'base.html'%}
+ {%block title%} Book Emergency {%endblock%}
+
+ <main>
+ {%block content%}
+
+
+ <body>
+    
+        <h1>Emergency Services</h1>
+        <p>Get immediate help for critical situations.</p>
+    
+    
+        <div class="form-container "> 
+            <p><strong>24/7 Helpline:</strong> +254-123-456-789</p>
+            <p><strong>Nearest Facility:</strong> Cost General Hospital, Mombasa</p>
+            <form method="post" novalidate>
+                {%csrf_token%}
+                {{form.as_p}}  
+                <button type="submit">Submit</button>          
+            </form>
+            <div class="btn">
+                <a href="{% url 'home' %}" >Return to Home</a>
+     
+            </div>
+        </div>
+       
+  
+
+
+ {%endblock%}
+</main>

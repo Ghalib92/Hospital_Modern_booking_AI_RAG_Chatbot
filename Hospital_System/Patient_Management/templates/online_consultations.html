@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %} Online Appointments {% endblock %}
+
+{% block content %}
+<main>
+    <div class="container">
+        <h1>Consultation Options</h1>
+        <p>Choose how you'd like to proceed with your consultation:</p>
+        <div class="options">
+            <button class="option" onclick="selectAI()">Chat with AI Doctor</button>
+            <button class="option" onclick="selectOnline()">Talk to an Online Doctor</button>
+        </div>
+        <div class="btn">
+            <a href="{% url 'home' %}" >Return to Home</a>
+ 
+        </div>
+    </div>
+
+    <script>
+        function selectAI() {
+            const info = document.getElementById("info");
+            info.innerHTML = `
+                <strong>AI Doctor:</strong><br>
+                You will chat with an intelligent AI system that provides quick responses and advice.
+                <br><br>
+                <a href="{% url 'AI' %}" style="color: #4caf50; text-decoration: none;">Start Chat</a>
+            `;
+        }
+
+        function selectOnline() {
+            const info = document.getElementById("info");
+            info.innerHTML = `
+                <strong>Online Doctor:</strong><br>
+                You will be scheduled for a meeting with a human doctor.<br>
+                You will receive an email with the Google Meet link and time for the consultation.
+                <br><br>
+                <a href="{% url 'online_doctor' %}">Book Appointment</a>
+            `;
+        }
+    </script>
+</main>
+{% endblock %}

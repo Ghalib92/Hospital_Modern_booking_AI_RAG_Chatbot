@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}Booking Success{% endblock %}
+
+{% block content %}
+<div class="booking-success-container">
+    <div class="booking-success-message">
+        <h2>Thank you for your booking!</h2>
+        <p>Your booking has been successfully received. We appreciate your trust in us and look forward to serving you.</p>
+
+        <div class="booking-details">
+            <h3>Booking Details:</h3>
+            <ul>
+                <li><strong>Service Booked:</strong> {{ service }}</li>
+                <li><strong>Appointment Date:</strong> {{ appointment_date }}</li>
+                <li><strong>Email:</strong>{{ email}}</li>
+            </ul>
+        </div>
+        <div class="btnn">
+            <a href="{% url 'home' %}" >Return to Home</a>
+ 
+        </div>
+       
+
+        <p>We will send you an email confirmation with your appointment details shortly.</p>
+        <p>Feel free to contact us if you have any questions.</p>
+    </div>
+</div>
+{% endblock %}

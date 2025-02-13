@@ -1,0 +1,81 @@
+{%extends 'base.html'%}
+{%block title %}Home{%endblock%}
+
+ 
+<main > 
+{% block content %}
+
+<div class="d-flex justify-content-center align-items-center mt-3 ">
+  <div class="p-5    rounded">
+
+
+    <h1 class="h1">Welcome to Coast General Hospital</h1>
+    <h5>We deliver quality services,You are at the right place!</h5>
+    
+  </div>
+</div>
+
+
+ 
+  
+  <div class="container-fluid mt-3  "> 
+    <div class="row">
+      <h2 class="h2">Click on an Item to book a session with us.</h2>
+      <div class="col-sm-3 p-3  text-dark">
+        
+        <a href="{% url 'online_consultations' %}">
+          <h3>Online Consultations</h3>
+          <p>Consult with our expert doctors from the comfort of your home.</p>
+      </a>
+  </div>
+      <div class="col-sm-3 p-3  text-dark">
+
+        <a href="{% url 'physical_appointment' %}">
+            <h3>Physical Appointments</h3>
+            <p>Visit our state-of-the-art hospital for all your healthcare needs.</p>
+             
+          </a>
+
+      </div>
+      <div class="col-sm-3 p-3 text-dark ">
+
+
+        <a href="{% url 'emergency_care' %}">
+            <h3>Emergency Care</h3>
+            <p>24/7 emergency services for critical situations.</p>
+            
+        </a>
+
+
+      </div>
+       
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+{%endblock%}
+</main>
