@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Patient_Management',
     'Accounts',
+    'chatbot',
 ]
 JAZZMIN_SETTINGS = {
     "site_title": "Hospital Admin",
@@ -66,6 +67,15 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
 
 MESSAGE_TAGS = {
     messages.DEBUG: 'debug',
