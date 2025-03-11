@@ -10,6 +10,6 @@ urlpatterns = [
     path('booking-success/<int:appointment_id>/', views.booking, name='booking_success'),
     path('AI/',views.AI, name='AI'),
     path('online_doctor/',views.online_doctor, name='online_doctor'),
-     
+    path('blog',views.blog,name = 'blog'),
 ]
  

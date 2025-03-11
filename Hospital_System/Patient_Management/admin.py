@@ -24,3 +24,7 @@ class OnlineDoctorAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'phone_number', 'service_type', 'date','time')
     search_fields = ('name', 'email', 'phone_number', 'service_type', 'date','time')
     list_filter = ('service_type', 'date')
+
+from .models import Blog
+
+admin.site.register(Blog) 

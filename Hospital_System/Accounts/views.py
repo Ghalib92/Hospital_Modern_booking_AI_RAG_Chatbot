@@ -1,9 +1,10 @@
 from django.shortcuts import render
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login,logout
 from django.contrib import messages
 from .models import DoctorProfile
 from django.contrib.auth.decorators import login_required
+from django .contrib.auth.models import User, auth
 # Create your views here.
 def register (request):
     return render(request, 'register.html')
@@ -32,3 +33,6 @@ def doctor_login(request):
 @login_required
 def doctor_dashboard(request):
     return render(request, 'doctor_dashboard.html')
+def logout(request):
+    auth.logout(request)
+    return redirect ('doctor_login')

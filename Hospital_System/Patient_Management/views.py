@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect,get_object_or_404
 from django.http import HttpResponse
 from django.template import loader
 from .forms import PhysicalAppointmentForm,online_doctorForm
-from .models import PhysicalAppointment
+from .models import PhysicalAppointment,Blog
 from .forms import EmergencyCareForm
 from .models import EmergencyCare
 from django.core.mail import send_mail
@@ -93,4 +93,7 @@ def online_doctor(request):
      return render(request, 'online_doctor.html',{'form': form})
           
      
-        
+def blog (request):
+    blogs = Blog.objects.all()
+    return render(request, 'blog.html', {'blogs': blogs})  # Pass blogs to the template
+     

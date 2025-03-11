@@ -1,32 +1,44 @@
- {%extends 'base.html'%}
- {%block title%} Book Emergency {%endblock%}
+ {% extends 'base.html' %}
+{% block title %} Book Emergency {% endblock %}
+{% load static %}
 
- <main>
- {%block content%}
+{% block content %}
+<main>
+    
 
+ 
+<div class="container-fluid mt-5">
+    <div class="row align-items-center">
+        <!-- Image on the Left -->
+        
 
- <body>
-    
-        <h1>Emergency Services</h1>
-        <p>Get immediate help for critical situations.</p>
-    
-    
-        <div class="form-container "> 
-            <p><strong>24/7 Helpline:</strong> +254-123-456-789</p>
-            <p><strong>Nearest Facility:</strong> Cost General Hospital, Mombasa</p>
-            <form method="post" novalidate>
-                {%csrf_token%}
-                {{form.as_p}}  
-                <button type="submit">Submit</button>          
-            </form>
-            <div class="btn">
-                <a href="{% url 'home' %}" >Return to Home</a>
-     
-            </div>
-        </div>
-       
+        <!-- Text on the Right -->
+        <div class="col-md-6 text-white d-flex flex-column justify-content-center" style="height: 500px;">
+            
+<div class=" container-fluid form-container mt-5">
+       <form method="post" novalidate >
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Submit</button>
+    </form>
+
+    <div class="btn mb-0 bg-dark text-white mt-2">
+        <a href="{% url 'home' %}" class="text-white">Return to Home</a>
+
+    </div>
+</div>
+ 
+
   
+        </div>
+
+        <div class="col-md-6">
+            <img class="img-fluid rounded w-100 mt-3" src="{% static 'media/emergency.jpg' %}" alt="Home Image" 
+                style="height: 700px; object-fit: cover;">
+        </div>
+    </div>
+</div>
 
 
- {%endblock%}
-</main>
+
+{% endblock %}
