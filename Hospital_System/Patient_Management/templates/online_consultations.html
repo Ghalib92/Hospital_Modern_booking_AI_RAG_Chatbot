@@ -2,10 +2,81 @@
 
 {% block title %} Online Appointments {% endblock %}
 
-{% block content %}
+{%load static%}
+<link rel="stylesheet" href="{%static 'css/main.css'%}">
+
+
 
  
-<div class="container-fluid bg-light py-5">
+{% block content %}
+
+
+
+
+
+
+<div class="container-fluid bg-dark text-white rounded p-5">
+
+    <P class="h5 text-white text-center">
+    
+        Welcome to the Coast General Hospital online diagnosis section,for basic analysis analysis we will give you and option based chatbot,which is easy and convinient for customers
+    </P>
+
+    <h2 class="h5 text-white text-center">
+
+        For advanced diagnosis consult with our chatbot service available to you 24/7,read usage intruction and staRT YOU conversation.
+         </h2>
+    <h4 class="h6 text-white text-center mt-2">Select from the below options for quick medical recommendation</h4></p>
+    </div>
+  
+
+    
+    <div class="container-fluid bg-dark p-5">
+        <div class="chat-header">🩺 Health Assistant</div>
+        <div class="chat-body" id="chatBody">
+            <div class="bot-message">👋 Welcome! Select a symptom or choose "Others" to describe how you feel:</div>
+            <div class="options">
+                <button   onclick="selectOption('Headache')">🤕 Headache</button>
+                <button onclick="selectOption('Fever')">🌡️ Fever</button>
+                <button onclick="selectOption('Cough')">🤧 Cough</button>
+                <button onclick="selectOption('Sore Throat')">😷 Sore Throat</button>
+                <button onclick="selectOption('Stomach Pain')">🤢 Stomach Pain</button>
+                <button onclick="selectOption('Back Pain')">💢 Back Pain</button>
+                <button onclick="selectOption('Skin Rash')">🩹 Skin Rash</button>
+                <button onclick="selectOption('Cold & Flu')">🤒 Cold & Flu</button>
+                <button onclick="selectOption('Allergies')">🤧 Allergies</button>
+                <button onclick="selectOption('First Aid')">⛑️ First Aid</button>
+                <button onclick="selectOther()">🔍 Others</button>
+            </div>
+        </div>
+        <div class="chat-footer">
+            <input type="text" id="userInput" placeholder="Describe your symptoms..." style="display:none;">
+            <button onclick="sendMessage()" style="display:none;">Submit</button>
+        </div>
+    </div>
+
+
+
+    <div class="container-fluid bg-white py-5">
+        <div class="container-fluid">
+            <h2 class="text-center mb-4">Enhanced AI Chatbot for Advanced Medical Assistance</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <p class="text-center">
+                        While our previous chatbot provided basic medical guidance, our new AI-powered assistant goes beyond simple interactions. 
+                        It is equipped with advanced natural language processing to engage in deeper medical conversations, assess symptoms more 
+                        accurately, and provide preliminary diagnoses based on user inputs. With improved learning algorithms, this chatbot can 
+                        offer personalized recommendations and guide users toward appropriate healthcare solutions with greater precision.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+
+<div class="container-fluid bg-dark py-5">
     <div class="container-fluid">
         <h2 class="text-center mb-4">How Our AI Chatbot Works</h2>
         <div class="row justify-content-center">
@@ -94,6 +165,91 @@
 
 
     <script>
+
+
+
+
+
+        function selectOption(condition) {
+            let chatBody = document.getElementById("chatBody");
+        
+            let userMessage = `<div class="user-message">✅ ${condition}</div>`;
+            chatBody.innerHTML += userMessage;
+        
+            setTimeout(() => {
+                let botResponse = getResponse(condition);
+                chatBody.innerHTML += `<div class="bot-message">${botResponse}</div>`;
+            }, 1000);
+        }
+        
+        function getResponse(condition) {
+            let responses = {
+                "Headache": "🩺 Take paracetamol, rest, and stay hydrated. If severe, seek medical attention.",
+                "Fever": "🌡️ Stay hydrated, take paracetamol, and monitor your temperature. See a doctor if it persists.",
+                "Cough": "🤧 Drink warm fluids, use honey, and take cough syrup if necessary.",
+                "Sore Throat": "😷 Gargle warm salt water, drink warm fluids, and avoid cold drinks.",
+                "Stomach Pain": "🤢 Avoid spicy foods, drink warm water, and take antacids if needed.",
+                "Back Pain": "💢 Try stretching, use a warm compress, and consider pain relievers.",
+                "Skin Rash": "🩹 Apply calamine lotion and avoid scratching. Seek medical advice if severe.",
+                "Cold & Flu": "🤒 Rest, drink fluids, and use over-the-counter cold medicine.",
+                "Allergies": "🤧 Take antihistamines and avoid allergens.",
+                "First Aid": "⛑️ For cuts, clean with antiseptic and bandage. For burns, cool under running water."
+            };
+            return responses[condition] || "❌ No information available.";
+        }
+        
+        // Function for "Others" option
+        function selectOther() {
+            let chatBody = document.getElementById("chatBody");
+            chatBody.innerHTML += `<div class="user-message">🔍 Others</div>`;
+        
+            document.getElementById("userInput").style.display = "block";
+            document.querySelector(".chat-footer button").style.display = "block";
+        }
+        
+        function sendMessage() {
+            let userInput = document.getElementById("userInput").value.trim().toLowerCase();
+            let chatBody = document.getElementById("chatBody");
+        
+            let userMessage = `<div class="user-message">✍️ ${userInput}</div>`;
+            chatBody.innerHTML += userMessage;
+        
+            let response = analyzeSymptoms(userInput);
+            setTimeout(() => {
+                chatBody.innerHTML += `<div class="bot-message">${response}</div>`;
+            }, 1000);
+        
+            document.getElementById("userInput").value = "";
+        }
+        
+        // Function to analyze symptoms using keyword detection
+        function analyzeSymptoms(input) {
+            let keywords = {
+                "headache": "🤕 You might have a headache. Drink water, rest, and take pain relief if needed.",
+                "fever": "🌡️ Fever detected. Take fluids, rest, and monitor your temperature.",
+                "pain": "💢 Pain detected. Try resting and taking a mild painkiller if necessary.",
+                "cough": "🤧 You mentioned cough. Try drinking warm fluids and using honey for relief.",
+                "sore throat": "😷 Sore throat detected. Gargle warm salt water and avoid cold drinks.",
+                "stomach": "🤢 Stomach issues detected. Avoid spicy food and drink warm water.",
+                "rash": "🩹 Skin rash detected. Apply a soothing lotion and avoid irritants.",
+                "cold": "🤒 Cold symptoms detected. Rest, drink fluids, and take medication if needed."
+            };
+        
+            for (let key in keywords) {
+                if (input.includes(key)) {
+                    return keywords[key];
+                }
+            }
+            
+            return "🩺 We couldn’t identify your symptoms. Please try chatting our more advanced chatbot option below or visit our hospital for more info by booking an appointment.";
+        }
+
+
+
+
+
+
+        
         function selectAI() {
             const info = document.getElementById("info");
             info.innerHTML = `
@@ -114,7 +270,32 @@
                 <br><br>
                 <a href="{% url 'online_doctor' %}" style="color: #4caf50; text-decoration: none;">Book Appointment</a>
             `;
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
+       
         }
+
+
+
+
+
     </script>
 </main>
 {% endblock %}
