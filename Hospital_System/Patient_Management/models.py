@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 class PhysicalAppointment(models.Model):
@@ -57,3 +58,15 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+    
+
+
+class Appointment(models.Model):
+    patient = models.ForeignKey(User, on_delete=models.CASCADE)
+    appointment_type = models.CharField(max_length=100)
+    appointment_time = models.DateTimeField()
+    booked_at = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return f"{self.user.username} - {self.appointment_type} - {self.appointment_time}"

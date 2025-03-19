@@ -85,3 +85,7 @@ def log_in(request):
 @login_required
 def Patient_Dashboard(request):
      return render(request, 'Patient_Dashboard.html')
+
+def log_out(request):
+     auth.logout(request)
+     return redirect ('log_in')

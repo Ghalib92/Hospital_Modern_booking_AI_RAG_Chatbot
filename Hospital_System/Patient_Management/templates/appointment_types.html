@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Types</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Select Appointment Type</h1>
+        <div class="row">
+            <div class="col-md-6 col-lg-3 mb-4">
+                <a href="{% url 'appointment_times' appointment_type='Dentist' %}" class="btn btn-outline-primary w-100">Dentist Appointment</a>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <a href="{% url 'appointment_times' appointment_type='Surgery' %}" class="btn btn-outline-primary w-100">Surgery Consultation</a>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <a href="{% url 'appointment_times' appointment_type='Gynecology' %}" class="btn btn-outline-primary w-100">Gynecology</a>
+            </div>
+            <div class="col-md-6 col-lg-3 mb-4">
+                <a href="{% url 'appointment_times' appointment_type='Normal' %}" class="btn btn-outline-primary w-100">Normal Consultation</a>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
