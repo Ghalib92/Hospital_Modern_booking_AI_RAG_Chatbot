@@ -5,48 +5,27 @@
  
 {% block content %}
 
- <ul style="list-style: none;"> 
-
- 
-
-<li class="container nav-item mt-1 ">
-  Click Here for the Doctor Login Page
-  <a class="nav-link text-white" href="accounts/login">Login as a Doctor</a>
-</li>
-</ul>
- 
-<div class="container-fluid mt-3 mb-5 "> 
-  <div class="row text-center">
-      <h2 class="h2 mb-4">Click on an Item to book a session with us.</h2>
-  </div>
   
-  <div class="my-container row justify-content-center text-center">
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-          <a href="{% url 'online_consultations' %}" class="card p-3 text-dark shadow h-100 text-decoration-none">
-              <h3 class="h4">Online Consultations</h3>
-              <p>Consult with our expert doctors from the comfort of your home.</p>
-          </a>
-      </div>
 
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-          <a href="{% url 'physical_appointment' %}" class="card p-3 text-dark shadow h-100 text-decoration-none">
-              <h3 class="h4">Physical Appointments</h3>
-              <p>Visit our state-of-the-art hospital for all your healthcare needs.</p>
-          </a>
-      </div>
 
-      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-          <a href="{% url 'blog' %}" class="card p-3 text-dark shadow h-100 text-decoration-none">
-              <h3 class="h4">Our Health Blogs</h3>
-              <p>Visit our blog page to learn more about your health measures.</p>
-          </a>
-      </div>
+ </div>
 
-      <div class="row justify-content-center text-center">
-         
-  </div>
-</div>
+ <div class="container">
+     Click to Login To Your Respective Dahsboard
+ </div>
+ 
+   <div class="d-flex mt-5 flex-direction-row flex-gap-5 p-5 justify-content-center">
+    <a class="nav-link  m-3" href="accounts/log_in">Sign in</a>
 
+ 
+ 
+    <a class="nav-link m-3 " href="accounts/signup">Create Account</a>
+ 
+  <a class="nav-link  m-3 " href="accounts/login">Login as a Doctor</a>
+ 
+ 
+   </div>
+   
 
 
 
