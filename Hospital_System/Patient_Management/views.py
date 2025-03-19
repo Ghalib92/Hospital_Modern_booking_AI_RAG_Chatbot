@@ -166,3 +166,10 @@ def book_appointment(request, appointment_type, appointment_time):
     )
 
     return HttpResponse("Appointment booked and confirmation email sent!")
+
+
+def patients(request):
+    return render(request, 'patients.html')
+
+def history(request):
+    return render(request, 'history.html')
