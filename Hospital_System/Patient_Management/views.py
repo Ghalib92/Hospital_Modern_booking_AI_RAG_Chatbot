@@ -114,25 +114,35 @@ def appointment_types(request):
 @login_required
 def appointment_times(request, appointment_type):
     today = datetime.now().date()
+    now = datetime.now()  # Current date and time
     available_times = []
     booked_times = []
+
     for i in range(5):  # Monday to Friday
         current_date = today + timedelta(days=i)
-        if current_date.weekday() < 5:
+        if current_date.weekday() < 5:  # Ensure it's a weekday (Monday to Friday)
             time_slots = [
                 (8, 9), (10, 11), (12, 13), (14, 15), (16, 17)
             ]
             for start_hour, end_hour in time_slots:
                 start_time = datetime.combine(current_date, time(start_hour, 0))
+
+                # Check if the time slot is in the past
+                if start_time < now:
+                    continue  # Skip this time slot
+
+                # Check if the time slot is already booked
                 if Appointment.objects.filter(appointment_time=start_time, appointment_type=appointment_type).exists():
                     booked_times.append(start_time)
                 else:
                     available_times.append(start_time)
+
     return render(request, 'appointment_times_list.html', {
         'appointment_type': appointment_type,
         'available_times': available_times,
         'booked_times': booked_times
     })
+
 @login_required
 def book_appointment(request, appointment_type, appointment_time):
     # Convert appointment_time from string to datetime
@@ -168,8 +178,25 @@ def book_appointment(request, appointment_type, appointment_time):
     return HttpResponse("Appointment booked and confirmation email sent!")
 
 
-def patients(request):
-    return render(request, 'patients.html')
 
+
+from django .contrib.auth.models import User, auth
+from .models import Appointment
+from Accounts.models import DoctorProfile  # Import from the accounts app  
+
+
+@login_required
+def patients(request ):
+ 
+    doctor = DoctorProfile.objects.get(user=request.user)
+    
+     
+         
+    # Get appointments where the type matches the doctor's specialty
+    appointments = Appointment.objects.filter(appointment_type__iexact=doctor.specialty)
+
+
+    return render(request, "patients.html", {"appointments": appointments, "doctor": doctor})
+ 
 def history(request):
     return render(request, 'history.html')

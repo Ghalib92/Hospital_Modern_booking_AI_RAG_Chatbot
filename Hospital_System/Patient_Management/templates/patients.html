@@ -1,17 +1,35 @@
-{%extends 'base.html'%}
-{%load static %}
-{% block title %} Patients {%endblock%}
+{% extends 'base.html' %}
+{% load static %}
 
+{% block title %} Patients {% endblock %}
+ 
 
-<main>
 {% block content %}
+<main>
+<div class="container-fluid">
+    <h1>Welcome, Doctor</h1>
+    <h2>Patients for {{ doctor.specialty }} Appointments</h2>
 
-
-
-
-
-
-
-
-{%endblock%}
+    {% if appointments %}
+        <table>
+            <tr>
+                <th>Patient Name</th>
+                <th>Email</th>
+                <th>Appointment Date</th>
+                <th>Reason</th>
+            </tr>
+            {% for appointment in appointments %}
+            <tr>
+                <td>{{ appointment.patient.username }}</td>
+                <td>{{ appointment.patient.email }}</td>
+                <td>{{ appointment.appointment_time }}</td>
+                <td>{{ appointment.appointment_type }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No patients found for your specialty.</p>
+    {% endif %}
+</div>
 </main>
+{% endblock %}
