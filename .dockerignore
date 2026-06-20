@@ -1,0 +1,14 @@
+.git
+.gitignore
+.env
+*.env
+venv/
+.venv/
+project/
+__pycache__/
+*.pyc
+*.sqlite3
+Hospital_System/media/
+Hospital_System/staticfiles/
+research/
+*.ipynb
